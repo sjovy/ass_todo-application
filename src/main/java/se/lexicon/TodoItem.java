@@ -15,13 +15,13 @@ public class TodoItem{
     private Person creator;
 
     //Constructor
-    public TodoItem(String title, String description, String deadline){
+    public TodoItem(String title, String description, String deadline, Person creator){
         this.itemID = nextItemID++;
         setTitle(title);
         setDescription(description);
         setDeadline(deadline);
         this.done = false;
-        // this.creator = creator;
+        setCreator(creator);
     }
 
     //Setters and Getters
@@ -35,11 +35,7 @@ public class TodoItem{
     }
 
     public void setTitle(String title){
-        // Not very elegant. Make helper function?
-        if (title == null || title.trim().isEmpty()) {
-            throw new IllegalArgumentException("Data missing!");
-        }
-        this.title = title;
+        this.title = Person.stringTest(title);
     }
 
     public String getDescription(){
@@ -55,9 +51,6 @@ public class TodoItem{
     }
 
     public void setDeadline(String deadline){
-        if (deadline == null || deadline.trim().isEmpty()) {
-            throw new IllegalArgumentException("Data missing!");
-        }
         this.deadline = LocalDate.parse(deadline);
     }
 
@@ -86,9 +79,7 @@ public class TodoItem{
         return "Item ID: " + itemID + "\n" +
                 "Title: " + title + ", Deadline: " + deadline + "\n" +
                 "Done: " + done + ", Overdue: " + isOverdue() + "\n" +
-                "Owner: " + creator + "\n" +
+                "Owner: " + creator.getFirstName() + " " + creator.getLastName() + "\n" +
                 "Description: " + description;
-
     }
-
 }

@@ -21,12 +21,18 @@ public class Person {
                "Email: " + email;
     }
 
-    public void setFirstName(String firstName){
-        // Not very elegant. Make helper function?
-        if (firstName == null || firstName.trim().isEmpty()) {
-            throw new IllegalArgumentException("Data missing!");
+    public static String stringTest(String testString){
+        // Also used in other classes
+        if (testString == null || testString.trim().isEmpty()) {
+            testString = "Data missing!";
+            return testString;
         }
-        this.firstName = firstName;
+        return testString;
+    }
+
+    public void setFirstName(String firstName){
+        this.firstName = stringTest(firstName);
+
     }
 
     public String getFirstName(){
@@ -34,20 +40,15 @@ public class Person {
     }
 
     public void setLastName(String lastName){
-        if (lastName == null || lastName.trim().isEmpty()) {
-            throw new IllegalArgumentException("Data missing!");
-        }
-        this.lastName = lastName;
+        this.lastName = stringTest(lastName);
     }
+
     public String getLastName(){
         return lastName;
     }
 
     public void setEmail(String email){
-        if (email == null || email.trim().isEmpty()) {
-            throw new IllegalArgumentException("Data missing!");
-        }
-        this.email = email;
+        this.email = stringTest(email);
     }
     public String getEmail(){
         return email;
