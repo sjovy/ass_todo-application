@@ -7,6 +7,7 @@ public class App
 {
     public static void main( String[] args )
     {
+
         Person P1 = new Person(" ", "Sjovy", "thomas@gmail.com");
         System.out.println(P1.getSummary());
         Person P2 = new Person("Oskar", "Quist", "oskar@gmail.com");

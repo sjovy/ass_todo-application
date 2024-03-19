@@ -4,7 +4,9 @@ public class Person {
 
     //Fields:
 
+
     final private int personalID;
+
     private static int nextID = 10001;
 
     private String firstName;
@@ -13,7 +15,9 @@ public class Person {
 
     //Getters and Setters:
 
+
     public int getPersonalID() {return personalID; }
+
 
     public String getSummary(){
         return "ID: " + personalID + "\n" +
@@ -21,12 +25,14 @@ public class Person {
                "Email: " + email;
     }
 
+
     public void setFirstName(String firstName){
         // Not very elegant. Make helper function?
         if (firstName == null || firstName.trim().isEmpty()) {
             throw new IllegalArgumentException("Data missing!");
         }
         this.firstName = firstName;
+
     }
 
     public String getFirstName(){
@@ -34,20 +40,24 @@ public class Person {
     }
 
     public void setLastName(String lastName){
+
         if (lastName == null || lastName.trim().isEmpty()) {
             throw new IllegalArgumentException("Data missing!");
         }
         this.lastName = lastName;
+
     }
     public String getLastName(){
         return lastName;
     }
 
     public void setEmail(String email){
+
         if (email == null || email.trim().isEmpty()) {
             throw new IllegalArgumentException("Data missing!");
         }
         this.email = email;
+
     }
     public String getEmail(){
         return email;
@@ -56,9 +66,11 @@ public class Person {
     //Constructor
     public Person(String firstName, String lastName, String email){
         this.personalID = nextID++;
+
         setFirstName(firstName);
         setLastName(lastName);
         setEmail(email);
+
     }
 
 
