@@ -4,7 +4,9 @@ public class Person {
 
     //Fields:
 
-    private int personalID;
+
+    final private int personalID;
+
     private static int nextID = 10001;
 
     private String firstName;
@@ -13,9 +15,9 @@ public class Person {
 
     //Getters and Setters:
 
-    public int getPersonalID(){
-        return personalID;
-    }
+
+    public int getPersonalID() {return personalID; }
+
 
     public String getSummary(){
         return "ID: " + personalID + "\n" +
@@ -23,16 +25,14 @@ public class Person {
                "Email: " + email;
     }
 
-    private String stringTest(String testString){
-        // todo helper for strings, still not working?
-        if (testString != null){
-            return testString;
-        }
-        return "data missing";
-    }
 
     public void setFirstName(String firstName){
-        this.firstName = stringTest(firstName);
+        // Not very elegant. Make helper function?
+        if (firstName == null || firstName.trim().isEmpty()) {
+            throw new IllegalArgumentException("Data missing!");
+        }
+        this.firstName = firstName;
+
     }
 
     public String getFirstName(){
@@ -40,14 +40,24 @@ public class Person {
     }
 
     public void setLastName(String lastName){
-        this.firstName = stringTest(lastName);
+
+        if (lastName == null || lastName.trim().isEmpty()) {
+            throw new IllegalArgumentException("Data missing!");
+        }
+        this.lastName = lastName;
+
     }
     public String getLastName(){
         return lastName;
     }
 
     public void setEmail(String email){
-        this.email = stringTest(email);
+
+        if (email == null || email.trim().isEmpty()) {
+            throw new IllegalArgumentException("Data missing!");
+        }
+        this.email = email;
+
     }
     public String getEmail(){
         return email;
@@ -56,9 +66,10 @@ public class Person {
     //Constructor
     public Person(String firstName, String lastName, String email){
         this.personalID = nextID++;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
+
+        setFirstName(firstName);
+        setLastName(lastName);
+        setEmail(email);
 
     }
 
