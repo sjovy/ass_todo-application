@@ -4,9 +4,7 @@ public class Person {
 
     //Fields:
 
-
     final private int personalID;
-
     private static int nextID = 10001;
 
     private String firstName;
@@ -15,9 +13,7 @@ public class Person {
 
     //Getters and Setters:
 
-
     public int getPersonalID() {return personalID; }
-
 
     public String getSummary(){
         return "ID: " + personalID + "\n" +
@@ -25,14 +21,18 @@ public class Person {
                "Email: " + email;
     }
 
+    public static String stringTest(String testString){
+        // Generic helper function. Also used for string inputs in other classes
+        // Although it is not a very elegant solution, aborting execution and
+        // error message is not very visible.
+        if (testString == null || testString.trim().isEmpty()) {
+            throw new IllegalArgumentException("Input cannot be null or empty.");
+        }
+        return testString;
+    }
 
     public void setFirstName(String firstName){
-        // Not very elegant. Make helper function?
-        if (firstName == null || firstName.trim().isEmpty()) {
-            throw new IllegalArgumentException("Data missing!");
-        }
-        this.firstName = firstName;
-
+        this.firstName = stringTest(firstName);
     }
 
     public String getFirstName(){
@@ -40,24 +40,15 @@ public class Person {
     }
 
     public void setLastName(String lastName){
-
-        if (lastName == null || lastName.trim().isEmpty()) {
-            throw new IllegalArgumentException("Data missing!");
-        }
-        this.lastName = lastName;
-
+        this.lastName = stringTest(lastName);
     }
+
     public String getLastName(){
         return lastName;
     }
 
     public void setEmail(String email){
-
-        if (email == null || email.trim().isEmpty()) {
-            throw new IllegalArgumentException("Data missing!");
-        }
-        this.email = email;
-
+        this.email = stringTest(email);
     }
     public String getEmail(){
         return email;
@@ -66,14 +57,8 @@ public class Person {
     //Constructor
     public Person(String firstName, String lastName, String email){
         this.personalID = nextID++;
-
         setFirstName(firstName);
         setLastName(lastName);
         setEmail(email);
-
     }
-
-
-
-
 }
