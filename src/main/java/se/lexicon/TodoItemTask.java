@@ -2,7 +2,7 @@ package se.lexicon;
 
 public class TodoItemTask {
 
-    //Fields
+    // Fields
 
     final private int taskID;
     private static int nextTaskID = 1;
@@ -12,6 +12,7 @@ public class TodoItemTask {
     private Person assignee;
 
     // Constructor
+
     public TodoItemTask(TodoItem todoItem, Person assignee){
         this.taskID = nextTaskID++;
         setTodoItem(todoItem);
@@ -29,9 +30,9 @@ public class TodoItemTask {
         return assigned;
     }
 
-    public void setAssigned(boolean assigned) {
-        this.assigned = assigned;
-    }
+    // public void setAssigned(boolean assigned) {
+    //     this.assigned = assigned;
+    // }
 
     public TodoItem getTodoItem() {
         return todoItem;
@@ -53,7 +54,8 @@ public class TodoItemTask {
             throw new IllegalArgumentException("Input cannot be null or empty.");
         }
         this.assignee = assignee;
-        setAssigned(true);
+        this.assigned = false;
+        // setAssigned(true);
     }
 
     public String getSummary(){

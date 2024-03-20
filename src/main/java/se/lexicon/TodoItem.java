@@ -3,7 +3,8 @@ package se.lexicon;
 import java.time.LocalDate;
 
 public class TodoItem{
-    //Fields:
+
+    // Fields:
 
     final private int itemID;
     private static int nextItemID = 1;
@@ -14,7 +15,8 @@ public class TodoItem{
     private boolean done;
     private Person creator;
 
-    //Constructor
+    // Constructor
+
     public TodoItem(String title, String description, String deadline, Person creator){
         this.itemID = nextItemID++;
         setTitle(title);
@@ -24,7 +26,7 @@ public class TodoItem{
         setCreator(creator);
     }
 
-    //Setters and Getters
+    // Setters and Getters
 
     public int getItemID(){
         return itemID;

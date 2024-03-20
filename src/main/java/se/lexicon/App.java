@@ -33,8 +33,8 @@ public class App
         TodoItemTask task1 = new TodoItemTask(item1, P1);
         System.out.println("\n" + task1.getSummary());
 
-        task1.setAssigned(true);
-        System.out.println("\n" + task1.getSummary());
+        // task1.setAssigned(false);
+        // System.out.println("\n" + task1.getSummary());
 
     }
 }

@@ -2,7 +2,7 @@ package se.lexicon;
 
 public class Person {
 
-    //Fields:
+    // Fields:
 
     final private int personalID;
     private static int nextID = 10001;
@@ -11,7 +11,7 @@ public class Person {
     private String lastName;
     private String email;
 
-    //Getters and Setters:
+    // Getters and Setters:
 
     public int getPersonalID() {return personalID; }
 
@@ -54,7 +54,8 @@ public class Person {
         return email;
     }
 
-    //Constructor
+    // Constructor
+
     public Person(String firstName, String lastName, String email){
         this.personalID = nextID++;
         setFirstName(firstName);
