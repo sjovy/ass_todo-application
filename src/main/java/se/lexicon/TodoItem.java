@@ -51,7 +51,8 @@ public class TodoItem{
     }
 
     public void setDeadline(String deadline){
-        this.deadline = LocalDate.parse(deadline);
+        this.deadline = LocalDate.parse(Person.stringTest(deadline));
+        // this.deadline = LocalDate.parse(deadline);
     }
 
     public void setDone(boolean done){

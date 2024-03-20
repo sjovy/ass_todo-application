@@ -22,17 +22,17 @@ public class Person {
     }
 
     public static String stringTest(String testString){
-        // Also used in other classes
+        // Generic helper function. Also used for string inputs in other classes
+        // Although it is not a very elegant solution, aborting execution and
+        // error message is not very visible.
         if (testString == null || testString.trim().isEmpty()) {
-            testString = "Data missing!";
-            return testString;
+            throw new IllegalArgumentException("Input cannot be null or empty.");
         }
         return testString;
     }
 
     public void setFirstName(String firstName){
         this.firstName = stringTest(firstName);
-
     }
 
     public String getFirstName(){
@@ -61,8 +61,4 @@ public class Person {
         setLastName(lastName);
         setEmail(email);
     }
-
-
-
-
 }
