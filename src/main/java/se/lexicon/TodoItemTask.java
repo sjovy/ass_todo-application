@@ -1,8 +1,10 @@
 package se.lexicon;
 
+import java.util.Objects;
+
 public class TodoItemTask {
 
-    // Fields
+    //Fields
 
     final private int taskID;
     private static int nextTaskID = 1;
@@ -12,7 +14,6 @@ public class TodoItemTask {
     private Person assignee;
 
     // Constructor
-
     public TodoItemTask(TodoItem todoItem, Person assignee){
         this.taskID = nextTaskID++;
         setTodoItem(todoItem);
@@ -30,9 +31,9 @@ public class TodoItemTask {
         return assigned;
     }
 
-    // public void setAssigned(boolean assigned) {
-    //     this.assigned = assigned;
-    // }
+    public void setAssigned(boolean assigned) {
+        this.assigned = assigned;
+    }
 
     public TodoItem getTodoItem() {
         return todoItem;
@@ -54,12 +55,16 @@ public class TodoItemTask {
             throw new IllegalArgumentException("Input cannot be null or empty.");
         }
         this.assignee = assignee;
-        this.assigned = false;
-        // setAssigned(true);
+        setAssigned(true);
     }
-
-    public String getSummary(){
+    // Replace getSummary() with toString() method that don’t print out Person object.
+    @Override
+    public String toString() {
+        return "TodoItemTask {" + " taskID= " + taskID + ", todoItem= " + todoItem +
+                ", assigned= " + assigned + ", assignee= " + assignee + "}";
+    }
+    /*public String getSummary(){
         return "Task ID: " + taskID + ", Todo: " + todoItem.getTitle() + "\n" +
                 "Assigned: " + assigned + ", Assigned to :" + assignee.getFirstName() + " " + assignee.getLastName();
-    }
+    }*/
 }

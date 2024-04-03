@@ -1,8 +1,10 @@
 package se.lexicon;
 
+import java.util.Objects;
+
 public class Person {
 
-    // Fields:
+    //Fields:
 
     final private int personalID;
     private static int nextID = 10001;
@@ -11,15 +13,24 @@ public class Person {
     private String lastName;
     private String email;
 
-    // Getters and Setters:
+    //Getters and Setters:
 
     public int getPersonalID() {return personalID; }
 
-    public String getSummary(){
+    /*public String getSummary(){
         return "ID: " + personalID + "\n" +
-               "Name: " + firstName + " " + lastName + "\n" +
-               "Email: " + email;
+                "Name: " + firstName + " " + lastName + "\n" +
+                "Email: " + email;
+    }*/
+
+     // Replace getSummary() with toString() method that don’t print out credentials.
+    @Override
+    public String toString() {
+        return "Person {" + " personalID= " + personalID + ", firstName= " + firstName +
+                ", lastName= " + lastName + ", email= " + email + "}";
     }
+
+
 
     public static String stringTest(String testString){
         // Generic helper function. Also used for string inputs in other classes
@@ -54,8 +65,37 @@ public class Person {
         return email;
     }
 
-    // Constructor
+    // Add a reference to AppUser called credentials.
+    // also create getter and setter for that field.
+    private AppUser credentials;
 
+    public AppUser getCredentials() {
+        return credentials;
+    }
+
+    public void setCredentials(AppUser credentials) {
+        this.credentials = credentials;
+    }
+
+    // Override equals and hashcode from Object. Exclude credentials from both.
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Person person = (Person) o;
+        return personalID == person.personalID &&
+                Objects.equals(firstName, person.firstName) &&
+                Objects.equals(lastName, person.lastName) &&
+                Objects.equals(email, person.email);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(personalID, firstName, lastName, email);
+    }
+
+
+    //Constructor
     public Person(String firstName, String lastName, String email){
         this.personalID = nextID++;
         setFirstName(firstName);

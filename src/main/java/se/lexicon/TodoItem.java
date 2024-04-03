@@ -1,10 +1,10 @@
 package se.lexicon;
 
 import java.time.LocalDate;
+import java.util.Objects;
 
 public class TodoItem{
-
-    // Fields:
+    //Fields:
 
     final private int itemID;
     private static int nextItemID = 1;
@@ -15,8 +15,7 @@ public class TodoItem{
     private boolean done;
     private Person creator;
 
-    // Constructor
-
+    //Constructor
     public TodoItem(String title, String description, String deadline, Person creator){
         this.itemID = nextItemID++;
         setTitle(title);
@@ -26,7 +25,7 @@ public class TodoItem{
         setCreator(creator);
     }
 
-    // Setters and Getters
+    //Setters and Getters
 
     public int getItemID(){
         return itemID;
@@ -78,11 +77,36 @@ public class TodoItem{
         return today.isAfter(deadline) && !done;
     }
 
-    public String getSummary(){
+    // equals() & hashCode() all fields except Person objects
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        TodoItem todoItem = (TodoItem) o;
+        return itemID == todoItem.itemID &&
+                done == todoItem.done &&
+                Objects.equals(title, todoItem.title) &&
+                Objects.equals(description, todoItem.description) &&
+                Objects.equals(deadline, todoItem.deadline);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(itemID, title, description, deadline, done);
+    }
+
+    // Replace getSummary() with toString() method that don’t print out Person objects.
+    @Override
+    public String toString() {
+        return "TodoItem {" + " itemID= " + itemID + ", title= " + title +
+                ", description= " + description + ", deadline= " + deadline + ", done= " + done + "}";
+    }
+
+    /* public String getSummary(){
         return "Item ID: " + itemID + "\n" +
                 "Title: " + title + ", Deadline: " + deadline + "\n" +
                 "Done: " + done + ", Overdue: " + isOverdue() + "\n" +
                 "Owner: " + creator.getFirstName() + " " + creator.getLastName() + "\n" +
                 "Description: " + description;
-    }
+    }*/
 }
